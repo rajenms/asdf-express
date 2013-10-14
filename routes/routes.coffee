@@ -1,10 +1,11 @@
 r = require './rest'
+baseApi = '/api/v1/'
 
 exports.all = () ->
   routes = [
-    r.get '/users', 'users.findAll'
-    r.get '/user/:id', 'users.findById'
-    r.post '/user', 'users.add'
-    r.delete '/user', 'users.remove'
-    r.put '/user', 'users.edit'
+    r.get baseApi + 'users', 'users.findAll'
+    r.get baseApi + 'user/:id', 'users.findById'
+    r.post baseApi + 'user', 'users.add'
+    r.delete baseApi + 'user/:id', 'users.remove'
+    r.put baseApi + 'user', 'users.edit'
   ]
