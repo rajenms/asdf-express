@@ -24,6 +24,15 @@ class BaseModel
         callbacks.error()
     )
 
+  findByField: (fieldObj, callbacks) ->
+    @Resource.find(where: fieldObj).success((resource) ->
+      console.log 'in find by field'
+      callbacks.success(resource)
+    ).error((errors) ->
+      console.log 'errors: ', error
+      callbacks.error(errors)
+    )
+
   all: (callbacks) ->
     @Resource.findAll().success((resources) ->
       callbacks.success(resources)

@@ -9,6 +9,9 @@
     "express": "3.3.5",
     "jade": "*",
     "coffee-script" : "*",
-    "jshashes" : "latest"
+    "jshashes" : "latest",
+    "passport" : "0.1.17",
+    "passport-local" : "0.1.6",
+    "connect-flash" : "0.1.1"
   }
 }

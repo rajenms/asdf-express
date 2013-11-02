@@ -1,4 +1,4 @@
-class BaseController
+class BaseCtrl
 
   constructor: (@Resource) ->
 
@@ -24,7 +24,6 @@ class BaseController
 
   add: (req, res) =>
     item = new @Resource(req.body)
-    console.log 'item: ', item
     item.save
       success: () ->
         res.status(200).send success: 'true'
@@ -55,4 +54,4 @@ class BaseController
           success: 'false'
           msg: 'Could not edit item of id: ' + req.body.id        
 
-module.exports = BaseController
+module.exports = BaseCtrl
