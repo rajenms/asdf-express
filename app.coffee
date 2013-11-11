@@ -28,7 +28,7 @@ passport.use new LocalStrategy(
 ,
 (username, password, done) ->
   User = new UserModel()
-  User.verifyAndFind({email: username, password: password}, 
+  User.verifyAndFind({email: username, password: password},
     success: (user) ->
       if user?
         console.log 'user!'
@@ -66,11 +66,12 @@ app.configure "development", ->
 routes.run(app)
 
 app.post "/api/v1/login", passport.authenticate("local"), (req, res) ->
-  user = req.user
-  res.status(200).send 
-    firstName: user.first_name
-    lastName: user.last_name
+  user = req.user.dataValues
+  res.status(200).send
+    firstName: user.firstName
+    lastName: user.lastName
     email: user.email
+    id: user.id
 
 app.get "/api/v1/logout", (req, res) ->
   req.logout()

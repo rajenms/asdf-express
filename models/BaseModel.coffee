@@ -44,7 +44,7 @@ class BaseModel
     @Resource.find(id).success((resource) ->
       # Did we find the resource?
       if resource?
-        resource.destroy().success(()->
+        resource.destroy().success(() ->
           callbacks.success()
         ).error(() ->
           callbacks.error()

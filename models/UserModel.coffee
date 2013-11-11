@@ -5,16 +5,14 @@ Hashes = require('jshashes')
 class User extends BaseModel
 
   constructor: (@fields) ->
-    #console.log 'fields: ', @fields
-    #@fields.password = new Hashes.MD5().hex(@fields.password)
     super 'user', @fields,
-      first_name: Sequelize.STRING
-      last_name: Sequelize.STRING
+      firstName: Sequelize.STRING
+      lastName: Sequelize.STRING
       email:
         type: Sequelize.STRING
         defaultValue: false
         allowNull: false
-      is_admin:
+      isAdmin:
         type: Sequelize.BOOLEAN
         defaultValue: false
         allowNull: false
@@ -27,6 +25,7 @@ class User extends BaseModel
     fieldObj.password = MD5.hex fieldObj.password
     console.log 'field obj: ', fieldObj
     @Resource.find(where: fieldObj).success((resource) ->
+      console.log 'resource: ', resource.dataValues
       callbacks.success(resource)
     ).error((errors) ->
       callbacks.error(errors)

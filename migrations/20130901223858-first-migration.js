@@ -3,16 +3,15 @@ module.exports = {
     migration.createTable(
       'users',
       {
-        first_name: DataTypes.STRING,
-        last_name: DataTypes.STRING,
-        is_admin: {
+        firstName: DataTypes.STRING,
+        lastName: DataTypes.STRING,
+        isAdmin: {
           type: DataTypes.BOOLEAN,
           defaultValue: false,
           allowNull: false
         }
       },
       {
-        engine: 'MYISAM',
         charset: 'latin1'
       }
     )
