@@ -47,7 +47,8 @@ app = express()
 app.configure ->
   app.set "port", process.env.PORT || 8000
   app.set 'views', __dirname + '/views'
-  app.set 'view engine', 'jade'
+  app.engine 'html', require('ejs').renderFile
+  #app.set 'view engine', 'jade'
   app.use express.favicon()
   app.use express.logger('dev')
   app.use express.bodyParser()
@@ -56,8 +57,12 @@ app.configure ->
   app.use express.session()
   app.use passport.initialize()
   app.use passport.session()
-  app.use app.router
+  app.use "/bower_components", express.static(path.join(__dirname, 'bower_components'))
+  app.use "/styles", express.static(path.join(__dirname, 'styles'))
+  app.use "/scripts", express.static(path.join(__dirname, 'scripts'))
+  app.use "/views", express.static(path.join(__dirname, 'views'))
   app.use express.static(path.join(__dirname, 'public'))
+  app.use app.router
 
 # development only
 app.configure "development", ->
@@ -76,6 +81,13 @@ app.post "/api/v1/login", passport.authenticate("local"), (req, res) ->
 app.get "/api/v1/logout", (req, res) ->
   req.logout()
   res.status(200).send success: 'true'
+
+app.get "/", (req, res) ->
+  res.render('index.html')
+
+app.get "*", (req, res) ->
+  res.render('index.html')
+
 
 
 http.createServer(app).listen(app.get('port'), () ->
