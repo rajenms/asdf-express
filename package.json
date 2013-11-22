@@ -8,11 +8,16 @@
   "dependencies": {
     "express": "3.3.5",
     "jade": "*",
-    "coffee-script" : "*",
-    "jshashes" : "latest",
-    "passport" : "0.1.17",
-    "passport-local" : "0.1.6",
-    "connect-flash" : "0.1.1",
-    "ejs" : "latest"
+    "coffee-script": "*",
+    "jshashes": "latest",
+    "passport": "0.1.17",
+    "passport-local": "0.1.6",
+    "connect-flash": "0.1.1",
+    "ejs": "latest",
+    "optimist": "~0.6.0",
+    "ntwitter": "~0.4.0",
+    "commander": "~1.0.0",
+    "colors": "~0.6.0-1",
+    "prompt": "~0.2.3"
   }
 }

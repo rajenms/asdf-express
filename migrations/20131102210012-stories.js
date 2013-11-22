@@ -9,14 +9,19 @@ module.exports = {
             autoIncrement: true
         },
         url: DataTypes.STRING,
-        firstSentence: DataTypes.STRING,
+        firstSentence: {
+          type: DataTypes.STRING,
+          allowNull: false
+        },
         createdAt: DataTypes.DATE,
         updatedAt: DataTypes.DATE,
-        author: {
+        addedBy: {
             type: DataTypes.INTEGER,
             references: 'users',
-            referencesKey: 'id'
-        }
+            referencesKey: 'id',
+            allowNull: false
+        },
+        author: DataTypes.STRING
       },
       {
         charset: 'latin1'

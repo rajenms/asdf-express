@@ -4,19 +4,19 @@ class BaseCtrl
 
   renderPermissions: (req, res, options) =>
     # If user needs to be logged in to perform this function, ensure logged in
-    if options?.perms?
-      if options.perms is 'admin' or options.perms is 'loggedin'
-        if not req.user?
-          res.status(401).send
-            success: 'false'
-            msg: 'User not authorized'
+    if options?.perms? and options.perms is 'loggedin'
+      # If user not present, this means user is not logged in.
+      if not req.user?
+        res.status(401).send
+          success: 'false'
+          msg: 'User not authorized'
 
     # If user needs to be admin to perform this function, ensure user is admin
     if options?.perms? and options.perms is 'admin'
-        if not req.user? or req.user?.getDataValue('isAdmin') is false
-          res.status(401).send
-            success: 'false'
-            msg: 'User not authorized'
+      if not req.user? or req.user?.getDataValue('isAdmin') is false
+        res.status(401).send
+          success: 'false'
+          msg: 'User not authorized'
 
   findAll: (req, res, options) =>
     console.log 'FINDING ALL'

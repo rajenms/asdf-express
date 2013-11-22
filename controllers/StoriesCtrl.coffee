@@ -7,10 +7,10 @@ class StoriesCtrl extends BaseCtrl
     super Story
 
   findAll: (req, res) =>
-    super req, res, {perms: 'admin'}
+    super req, res
 
   findById: (req, res) =>
-    super req, res, {perms: 'admin'}
+    super req, res
 
   add: (req, res) =>
     super req, res, {perms: 'admin'}
